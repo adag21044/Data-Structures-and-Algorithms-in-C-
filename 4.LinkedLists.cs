@@ -92,6 +92,40 @@ public class LinkedList<T>
             current.Next = current.Next.Next;
         }
     }
+
+    // Finds the first occurrence of the specified data
+    public Node<T> Find(T data)
+    {
+        Node<T> current = head;
+        while (current != null)
+        {
+            if (current.Data.Equals(data))
+            {
+                return current;
+            }
+            current = current.Next;
+        }
+        return null; // Return null if the data is not found
+    }
+
+    // Counts the number of nodes in the list
+    public int Count()
+    {
+        int count = 0;
+        Node<T> current = head;
+        while (current != null)
+        {
+            count++;
+            current = current.Next;
+        }
+        return count;
+    }
+
+    // Clears the list by removing all nodes
+    public void Clear()
+    {
+        head = null; // Simply set the head to null
+    }
 }
 
 class Program
@@ -107,6 +141,21 @@ class Program
         list.AddLast(4);
         list.AddLast(5);
 
+        Console.WriteLine("Linked List Contents:");
         list.PrintList(); // Print the contents of the list
+
+        Console.WriteLine("Removing 3:");
+        list.Remove(3); // Remove the element with value 3
+        list.PrintList(); // Print the list after removal
+
+        Console.WriteLine("Finding 2:");
+        var node = list.Find(2);
+        Console.WriteLine(node != null ? $"Found: {node.Data}" : "Not Found");
+
+        Console.WriteLine($"Number of elements: {list.Count()}"); // Print the number of elements
+
+        Console.WriteLine("Clearing the list:");
+        list.Clear(); // Clear the list
+        list.PrintList(); // Print the list after clearing
     }
 }
